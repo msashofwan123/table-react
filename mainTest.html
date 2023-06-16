@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Api Realtime Database</title>
+</head>
+
+<body>
+    <h1>Test Database</h1>
+
+    <script>
+        let url = "https://table-aef7f-default-rtdb.";
+        url += "asia-southeast1.firebasedatabase.app";
+        url += "/datasiswa.json";
+
+        const data = {
+            "name" : "Muhammad",
+            "jenkel" : "L",
+            "beasiswa" : true,
+        }
+
+        const myFetch = async () => {
+            try {
+                let response = await fetch(url, {
+                    method: "GET",
+                    // body: JSON.stringify(data)
+                });
+
+                alert("Data Terkirim Ke Server")
+                if (!response.ok) {
+                    throw new error(response.status);
+                }
+                let responseData = await response.json();
+                console.log(responseData);
+            }
+            catch (error) {
+                console.log(`Terjadi Gangguan Server. Pesan: "${error}"`);
+            }
+        }
+        myFetch();
+    </script>
+</body>
+
+</html>
